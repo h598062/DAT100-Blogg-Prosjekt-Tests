@@ -1,4 +1,4 @@
-# dat100-jplab12-testing
+# DAT100-Blogg-Prosjekt-Tests
 
 ## Forbedringer
 
