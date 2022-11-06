@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import no.hvl.dat100.jplab11.oppgave2.*;
 import no.hvl.dat100.jplab11.oppgave3.*;
 
+import java.util.Arrays;
+
 public class TestBlogg {
 
 	@Test
@@ -125,6 +127,26 @@ public class TestBlogg {
 	}
 
 	@Test
+	public void testleggTilUtvid() {
+		Blogg samling = new Blogg(1);
+
+		TInnlegg innlegg1 = new TInnlegg(1, "Ole Olsen", "23-10");
+		TInnlegg innlegg2 = new TInnlegg(2, "Oline Olsen", "24-10");
+
+		samling.leggTil(innlegg1);
+
+		assertEquals(samling.getAntall(), 1);
+		assertFalse(samling.ledigPlass());
+
+		assertTrue(samling.leggTilUtvid(innlegg2));
+
+		assertTrue(samling.finnes(innlegg1));
+		assertTrue(samling.finnes(innlegg2));
+		assertEquals(samling.getAntall(), 2);
+		assertTrue(samling.ledigPlass());
+	}
+
+	@Test
 	public void testslett() {
 
 		Blogg samling = new Blogg(2);
@@ -161,6 +183,26 @@ public class TestBlogg {
 		             "BILDE\n2\nOline Olsen\n24-10\n0\net bilde\nhttp://www.picture.com/oo.jpg\n";
 
 		assertEquals(str, samling.toString());
+
+	}
+
+	@Test
+	public void testsearch() {
+		Blogg samling = new Blogg(2);
+
+		int[] riktigID = {1, 2, 4};
+
+		Tekst innlegg1 = new Tekst(1, "Ole Olsen", "23-10", "Riktig tekst");
+		Tekst innlegg2 = new Tekst(2, "Oline Olsen", "24-10", "Riktig tekst");
+		Tekst innlegg3 = new Tekst(3, "Oda Olsen", "24-10", "Feil tekst");
+		Tekst innlegg4 = new Tekst(4, "Olga Olsen", "24-10", "Riktig tekst");
+
+		samling.leggTil(innlegg1);
+		samling.leggTil(innlegg2);
+		samling.leggTil(innlegg3);
+		samling.leggTil(innlegg4);
+
+		assertArrayEquals(samling.search("Riktig tekst"), riktigID);
 
 	}
 }
