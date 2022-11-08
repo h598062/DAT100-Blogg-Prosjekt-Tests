@@ -36,8 +36,10 @@ public class TestBlogg {
 		TInnlegg innlegg2 = new TInnlegg(2, "Oline Olsen", "24-10");
 		TInnlegg innlegg3 = new TInnlegg(3, "Oda Olsen", "24-10");
 
-		samling.getSamling()[0] = innlegg1;
-		samling.getSamling()[1] = innlegg2;
+		samling.leggTil(innlegg1);
+		samling.leggTil(innlegg2);
+		// samling.getSamling()[0] = innlegg1;
+		// samling.getSamling()[1] = innlegg2;
 		// samling.getSamling()[2] = innlegg3;
 
 		assertTrue(samling.finnInnlegg(innlegg1) >= 0);
@@ -53,8 +55,10 @@ public class TestBlogg {
 		TInnlegg innlegg2 = new TInnlegg(2, "Oline Olsen", "24-10");
 		TInnlegg innlegg3 = new TInnlegg(3, "Oda Olsen", "24-10");
 
-		samling.getSamling()[0] = innlegg1;
-		samling.getSamling()[1] = innlegg2;
+		samling.leggTil(innlegg1);
+		samling.leggTil(innlegg2);
+		// samling.getSamling()[0] = innlegg1;
+		// samling.getSamling()[1] = innlegg2;
 		// samling.getSamling()[2] = innlegg3;
 
 		assertTrue(samling.finnes(innlegg1));
@@ -161,7 +165,7 @@ public class TestBlogg {
 		assertTrue(samling.finnes(innlegg1));
 		assertTrue(samling.finnes(innlegg2));
 
-		samling.slett(innlegg2);
+		assertTrue(samling.slett(innlegg2));
 
 		assertEquals(1, samling.getAntall());
 		assertTrue(samling.finnes(innlegg1));
@@ -188,7 +192,7 @@ public class TestBlogg {
 
 	@Test
 	public void testsearch() {
-		Blogg samling = new Blogg(2);
+		Blogg samling = new Blogg();
 
 		int[] riktigID = {1, 2, 4};
 
@@ -202,7 +206,7 @@ public class TestBlogg {
 		samling.leggTil(innlegg3);
 		samling.leggTil(innlegg4);
 
-		assertArrayEquals(samling.search("Riktig tekst"), riktigID);
+		assertArrayEquals(riktigID, samling.search("Riktig tekst"));
 
 	}
 }
