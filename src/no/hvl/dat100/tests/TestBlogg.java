@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import no.hvl.dat100.jplab11.oppgave2.*;
 import no.hvl.dat100.jplab11.oppgave3.*;
 
-import java.util.Arrays;
-
 public class TestBlogg {
 
 	@Test
@@ -182,9 +180,8 @@ public class TestBlogg {
 		samling.leggTil(innlegg1);
 		samling.leggTil(innlegg2);
 
-		String str = "2\n" +
-		             "TEKST\n1\nOle Olsen\n23-10\n0\nen tekst\n" +
-		             "BILDE\n2\nOline Olsen\n24-10\n0\net bilde\nhttp://www.picture.com/oo.jpg\n";
+		String str
+				= "2\nTEKST\n1\nOle Olsen\n23-10\n0\nen tekst\nBILDE\n2\nOline Olsen\n24-10\n0\net bilde\nhttp://www.picture.com/oo.jpg\n";
 
 		assertEquals(str, samling.toString());
 
